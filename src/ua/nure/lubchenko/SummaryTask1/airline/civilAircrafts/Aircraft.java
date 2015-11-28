@@ -1,0 +1,188 @@
+package ua.nure.lubchenko.SummaryTask1.airline.civilAircrafts;
+
+/**
+ * <p>
+ * Superclass, is used as a general type for objects in the "Airline"
+ * collection. Abstract type is only associated with civil aircraft (should not
+ * be extended by military aircraft, for example).
+ * </p>
+ * <p>
+ * Fields:
+ * </p>
+ * <p>
+ * <i>model</i> full name of the aircraft
+ * </p>
+ * <p>
+ * <i>type</i> type of the aircraft
+ * </p>
+ * <p>
+ * <i>carryingCapacity</i> max allowed weight carried aboard [kg]
+ * </p>
+ * <p>
+ * <i>passengersCapacity</i> max allowed number of people aboard
+ * </p>
+ * <p>
+ * <i>distance</i> max allowed distance of a flight [km]
+ * </p>
+ * <p>
+ * <i>fuelConsumption</i> hourly fuel consumption [kg/hour])
+ * </p>
+ * 
+ * @author Sasha
+ * @version 1.0
+ */
+public abstract class Aircraft {
+	private String model;
+	private String type;
+	private int carryingCapacity;
+	private int passengersCapacity;
+	private int distance;
+	private int fuelConsumption;
+
+	public Aircraft(String model, int carryingCapacity, int passengersCapacity,
+			int distance, int fuelConsumption) {
+		setModel(model);
+		setType();
+		setCarryingCapacity(carryingCapacity);
+		setPassengersCapacity(passengersCapacity);
+		setDistance(distance);
+		setFuelConsumption(fuelConsumption);
+	}
+
+	/**
+	 * @return the model
+	 */
+	public String getModel() {
+		return model;
+	}
+
+	/**
+	 * @param model
+	 *            the model to set (not null)
+	 */
+	public void setModel(String model) {
+		if (!"".equals(model)) {
+			this.model = model;
+		} else {
+			throw new IllegalArgumentException(
+					"Field \"model\" can not be empty !");
+		}
+	}
+
+	/**
+	 * @return the type of an aircraft
+	 */
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * @param type
+	 *            the type to set
+	 */
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	/**
+	 * no parameters
+	 */
+	public abstract void setType();
+
+	/**
+	 * @return the carryingCapacity
+	 */
+	public int getCarryingCapacity() {
+		return carryingCapacity;
+	}
+
+	/**
+	 * @param carryingCapacity
+	 *            the carryingCapacity to set by default equals
+	 *            100+100*numberOfPassangers [kg]
+	 */
+	public void setCarryingCapacity(int carryingCapacity) {
+
+		int minCapacity = 100 + getPassengersCapacity() * 100;
+		if (carryingCapacity > minCapacity) {
+			this.carryingCapacity = carryingCapacity;
+		} else {
+			this.carryingCapacity = minCapacity;
+		}
+	}
+
+	/**
+	 * @return the passengersCapacity
+	 */
+	public int getPassengersCapacity() {
+		return passengersCapacity;
+	}
+
+	/**
+	 * @param passengersCapacity
+	 *            the passengersCapacity to set (should exceed 0)
+	 */
+	public void setPassengersCapacity(int passengersCapacity) {
+		if (passengersCapacity > 0) {
+			this.passengersCapacity = passengersCapacity;
+		} else {
+			throw new IllegalArgumentException(
+					"Field \"passengersCapacity\" should exceed 0 !");
+		}
+	}
+
+	/**
+	 * @return the distance
+	 */
+	public int getDistance() {
+		return distance;
+	}
+
+	/**
+	 * @param distance
+	 *            the distance to set (should exceed 0)
+	 */
+	public void setDistance(int distance) {
+		if (distance > 0) {
+			this.distance = distance;
+		} else {
+			throw new IllegalArgumentException(
+					"Field \"distance\" should exceed 0 !");
+		}
+	}
+
+	/**
+	 * @return the fuelConsumption
+	 */
+	public int getFuelConsumption() {
+		return fuelConsumption;
+	}
+
+	/**
+	 * @param fuelConsumption
+	 *            the fuelConsumption to set (should exceed 0)
+	 */
+	public void setFuelConsumption(int fuelConsumption) {
+		if (fuelConsumption > 0) {
+			this.fuelConsumption = fuelConsumption;
+		} else {
+			throw new IllegalArgumentException(
+					"Field \"fuelConsumption\" should exceed 0 !");
+		}
+	}
+
+	/**
+	 * Returns readable information about an aircraft Contains names and values
+	 * of the object fields
+	 */
+	@Override
+	public String toString() {
+		return "Model : " + getModel() + System.lineSeparator() + "Type : "
+				+ getType() + System.lineSeparator() + "Carrying capacity : "
+				+ getCarryingCapacity() + System.lineSeparator()
+				+ "Passengers capacity : " + getPassengersCapacity()
+				+ System.lineSeparator() + "Distance : " + getDistance()
+				+ System.lineSeparator() + "Fuel consumption : "
+				+ getFuelConsumption();
+	}
+}

@@ -1,0 +1,15 @@
+package ua.nure.lubchenko.airline.civilAircrafts;
+/**
+ * Class associated with aircrafts which are used for people transportation
+ * @author Sasha
+ *
+ */
+public abstract class PassengerAircraft extends Aircraft {
+
+	public PassengerAircraft(String model, int carryingCapacity,
+			int passengersCapacity, int distance, int fuelConsumption) {
+		super(model, carryingCapacity, passengersCapacity, distance,
+				fuelConsumption);
+	}
+
+}
